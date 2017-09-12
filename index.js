@@ -1,11 +1,12 @@
 const YOUTUBS_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+const YOUTUBE_KEY = 'AIzaSyA6q8CLCawIKN7DqaeFnHRoHT-QiNWeJCI'
 
 function getDataFromYouTube(searchVideo, callback) {
   const settings = {
     url: YOUTUBE_SEARCH_URL,
     data: {
       part: 'snippet',
-      key: 'AIzaSyA6q8CLCawIKN7DqaeFnHRoHT-QiNWeJCI',
+      key: YOUTUBE_KEY,
       q: `${searchVideo} in:name`,
       per_page: 10
     },
