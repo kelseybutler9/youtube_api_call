@@ -35,7 +35,7 @@ function userSubmits() {
   $('.js-search-form').submit(event => {
     event.preventDefault();
     const videoSearchTarget = $(event.currentTarget).find('.js-query');
-    const videoSearch = queryTarget.val();
+    const videoSearch = videoSearchTarget.val();
     videoSearchTarget.val("");
     getDataFromYoutube(videoSearch, displayGitHubSearchData);
   });
