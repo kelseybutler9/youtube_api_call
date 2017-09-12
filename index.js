@@ -1,4 +1,4 @@
-const YOUTUBS_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
+const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
 const YOUTUBE_KEY = 'AIzaSyA6q8CLCawIKN7DqaeFnHRoHT-QiNWeJCI'
 
 function getDataFromYouTube(searchVideo, callback) {
@@ -7,8 +7,7 @@ function getDataFromYouTube(searchVideo, callback) {
     data: {
       part: 'snippet',
       key: YOUTUBE_KEY,
-      q: `${searchVideo} in:name`,
-      per_page: 10
+      q: `${searchVideo} in:name`
     },
     dataType: 'json',
     type: 'GET',
@@ -19,9 +18,12 @@ function getDataFromYouTube(searchVideo, callback) {
 }
 
 function renderResult(result) {
+  console.log(result);
   return `
     <div>
-      <p>${result.name}</p>
+      <h2>
+      <a class="js-result-name" href="https://www.youtube.com/watch?v=${result.id.videoId}" target="_blank">${result.snippet.title}</a></h2>
+      <img src='${result.snippet.thumbnails.medium.url}' alt='search result image'>
     </div>
   `;
 }
@@ -37,7 +39,7 @@ function userSubmits() {
     const videoSearchTarget = $(event.currentTarget).find('.js-query');
     const videoSearch = videoSearchTarget.val();
     videoSearchTarget.val("");
-    getDataFromYoutube(videoSearch, displayGitHubSearchData);
+    getDataFromYouTube(videoSearch, displayGitHubSearchData);
   });
 }
 
