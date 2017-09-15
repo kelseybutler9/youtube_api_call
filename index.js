@@ -15,6 +15,7 @@ function getDataFromYouTube(searchVideo, callback) {
   };
 
   $.ajax(settings);
+  //.fail(showErr);//adding this line for the fail?
 }
 
 function renderResult(result) {
@@ -30,7 +31,20 @@ function renderResult(result) {
 
 function displayGitHubSearchData(data) {
   const results = data.items.map((item, index) => renderResult(item));
-  $('.js-search-results').html(results);
+  $('.js-search-results').html(results).prop('hidden', false);//added in for aria live
+}
+
+function showErr(err) {
+  console.log(err);
+  if(err === 404) {
+    let errMsg = 'We couldn\'t find that video!';
+  }
+  if (err === 503) {
+    let errMsg = 'We couldn\'t reach Youtube\'s servers!';
+  }
+  // $('js-result').empty()
+  //   .append('<div class='error'><p>${errMsg}<p></div>')
+  //   .prop('hidden',false);//erroring in console
 }
 
 function userSubmits() {
