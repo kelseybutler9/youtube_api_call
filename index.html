@@ -12,17 +12,22 @@
     </head>
     <body>
       
-        <h1>Search videos by name on Youtube</h1>
-        <form action="#" class="js-search-form">
-            <label for="query"></label>
-            <input type="text" class="js-query">
-            <button type="submit">Search</button>
-        </form>
-        <main role="main" aria-live="assertive">
-          <h2>Results</h2>
-          <div class="js-search-results">
-          </div>
+      <h1>Search videos by name on Youtube</h1>
+      <form action="#" class="js-search-form">
+        <label for="query"> Enter a video search</label>
+        <input type="text" name="video-search" class="js-query" required>
+        <button type="submit">Search</button>
+      </form>
+
+      <main role="main" class= "js-output" aria-live="assertive">
+        <h2>Results</h2>
+        <div class="js-search-results">
+        </div>
       </main>
+
+      <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+      integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+      crossorigin="anonymous"></script>
       <script src="index.js"></script>
     </body>
 </html>
