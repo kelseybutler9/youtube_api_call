@@ -1,5 +1,5 @@
 const YOUTUBE_SEARCH_URL = 'https://www.googleapis.com/youtube/v3/search';
-const YOUTUBE_KEY = 'AIzaSyA6q8CLCawIKN7DqaeFnHRoHT-QiNWeJCI'
+const YOUTUBE_KEY = 'AIzaSyA6q8CLCawIKN7DqaeFnHRoHT-QiNWeJCI';
 
 function getDataFromYouTube(searchVideo, callback) {
   const settings = {
@@ -14,8 +14,8 @@ function getDataFromYouTube(searchVideo, callback) {
     success: callback
   };
 
-  $.ajax(settings);
-  //.fail(showErr);//adding this line for the fail?
+  $.ajax(settings)
+    .fail(showErr);
 }
 
 function renderResult(result) {
@@ -31,20 +31,21 @@ function renderResult(result) {
 
 function displayGitHubSearchData(data) {
   const results = data.items.map((item, index) => renderResult(item));
-  $('.js-search-results').html(results).prop('hidden', false);//added in for aria live
+  $('.js-search-results').html(results).prop('hidden', false);
 }
 
 function showErr(err) {
-  console.log(err);
-  if(err === 404) {
-    let errMsg = 'We couldn\'t find that video!';
+  console.log(err.status);
+  let errMsg = '';
+  if(err.status === 400) {
+    errMsg = 'We couldn\'t find that video!';
   }
   if (err === 503) {
-    let errMsg = 'We couldn\'t reach Youtube\'s servers!';
+    errMsg = 'We couldn\'t reach Youtube\'s servers!';
   }
-  // $('js-result').empty()
-  //   .append('<div class='error'><p>${errMsg}<p></div>')
-  //   .prop('hidden',false);//erroring in console
+  $('.js-search-results').empty()
+    .append(`<div class='error'><p>${errMsg}<p></div>`)
+    .prop('hidden',false);
 }
 
 function userSubmits() {
